@@ -34,3 +34,6 @@ debug.log
 .env.production.local
 # vercel
 .vercel
+
+#Intellij specific
+.idea/*
