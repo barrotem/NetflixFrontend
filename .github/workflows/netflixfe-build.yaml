@@ -26,9 +26,9 @@ jobs:
     steps:
       - name: Trigger the deployment workflow
         run: |
-          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflix-mc:github-wf-${{ github.run_number }}
+          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflixfe:github-wf-${{ github.run_number }}
           curl -X POST \
            -H "Authorization: Bearer ${{ secrets.NETFLIX_INFRA_ACCESS_TOKEN }}" \
            -H "Accept: application/vnd.github.v3+json" \
-           -d "{\"ref\": \"main\", \"inputs\": {\"service_name\": \"netflix-mc\", \"image\": \"$IMAGE_NAME\"}}" \
+           -d "{\"ref\": \"main\", \"inputs\": {\"service_name\": \"netflixfe\", \"image\": \"$IMAGE_NAME\"}}" \
            https://api.github.com/repos/barrotem/NetflixInfra/actions/workflows/netflix-stack-deploy.yml/dispatches
