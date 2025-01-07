@@ -27,14 +27,18 @@ jobs:
       - name: Checkout infrastructure repo
         uses: actions/checkout@v3
         with:
-          repository: YOUR_NETFLIX_INFRA_REPO  # TODO change me
-          token: ${{ secrets.REPO_TOKEN }}  # The GITHUB_TOKEN secret is a GitHub access token.
-          path: ./NetflixInfra
+          repository: barrotem/NetflixInfra # TODO change me to a dynamic value
+          token: ${{ secrets.NETFLIX_INFRA_ACCESS_TOKEN }}  # The GITHUB_TOKEN secret is a GitHub access token.
+          path: ./NetflixInfra # TODO change me to a dynamic value
 
       - name: Update YAML manifests
         run: |
-           cd ./NetflixInfra
-           # TODO commit & push changes to infra repo
+          # TODO update YAML manifest to match the new version
+          cd ./NetflixInfra
+          cd k8s/NetflixFrontend
+          # Update yaml deployment file to match the new netflix-frontend image
+          yq e .spec.template.spec.containers[0].image = $IMAGE_NAME -i deployment.yaml
+          # TODO commit & push changes to infra repo
            
 
       - name: Commit and Push changes
