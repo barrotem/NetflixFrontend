@@ -34,15 +34,14 @@ jobs:
 
       - name: Update YAML manifests
         run: |
-          # TODO update YAML manifest to match the new version
           cd ./${{ vars.INFRA_REPO }}/k8s/NetflixFrontend
-          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflixfe:github-wf-deploy-${{ github.run_number }}
-          echo "IMAGE_NAME IS : $IMAGE_NAME"
+          
           # Update yaml deployment file to match the new netflix-frontend image
+          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflixfe:github-wf-deploy-${{ github.run_number }}
           yq e ".spec.template.spec.containers[0].image = \"$IMAGE_NAME\"" -i deployment.yaml
           cat deployment.yaml
           echo "Updated ${{ vars.INFRA_REPO }}'s NetflixFrontend deployment"
-          # TODO commit & push changes to infra repo
+
            
 
       - name: Commit and Push changes
@@ -57,6 +56,6 @@ jobs:
           
           git add deployment.yaml
           IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflixfe:github-wf-deploy-${{ github.run_number }}
-          git commit -m "Updated NetflixFrontend image to $IMAGE_NAME in the ${{ vars.INFRA_REPO }} repo"
-          git push origin main #--force
+          git commit -m "Updated NetflixFrontend image to $IMAGE_NAME"
+          git push origin main
           echo "Pushed changes to ${{ vars.INFRA_REPO }}"
