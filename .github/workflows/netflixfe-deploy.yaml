@@ -35,17 +35,21 @@ jobs:
         run: |
           # TODO update YAML manifest to match the new version
           cd ./NetflixInfra
-          pwd
           cd k8s/NetflixFrontend
-          pwd
-          ls -l
           # Update yaml deployment file to match the new netflix-frontend image
-          yq e '.spec.template.spec.containers[0].image = "$IMAGE_NAME"' -i deployment.yaml
+          yq e '.spec.template.spec.containers[0].image = \"$IMAGE_NAME\"' -i deployment.yaml
           cat deployment.yaml
+          pwd
           # TODO commit & push changes to infra repo
            
 
       - name: Commit and Push changes
         run: |
-           cd ./NetflixInfra
-           # TODO commit & push changes to infra repo
+          pwd
+          cd ./NetflixInfra
+          # TODO commit & push changes to infra repo
+#          git config --local user.email "github@actions"
+#          git config --local user.name "github-actions"
+#
+#          git add docker-compose.yaml && git commit -m "Update ${{ github.event.inputs.service_name }} image to ${{ github.event.inputs.image }}"
+#          git push origin main --force
