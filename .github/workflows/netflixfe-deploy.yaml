@@ -36,6 +36,7 @@ jobs:
           # TODO update YAML manifest to match the new version
           cd ./NetflixInfra
           cd k8s/NetflixFrontend
+          echo "IMAGE_NAME IS : $IMAGE_NAME"
           # Update yaml deployment file to match the new netflix-frontend image
           yq e '.spec.template.spec.containers[0].image = \"$IMAGE_NAME\"' -i deployment.yaml
           cat deployment.yaml
