@@ -39,7 +39,6 @@ jobs:
           # Update yaml deployment file to match the new netflix-frontend image
           IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflixfe:github-wf-deploy-${{ github.run_number }}
           yq e ".spec.template.spec.containers[0].image = \"$IMAGE_NAME\"" -i deployment.yaml
-          cat deployment.yaml
           echo "Updated ${{ vars.INFRA_REPO }}'s NetflixFrontend deployment"
 
            
