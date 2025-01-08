@@ -39,7 +39,7 @@ jobs:
           IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflixfe:github-wf-deploy-${{ github.run_number }}
           echo "IMAGE_NAME IS : $IMAGE_NAME"
           # Update yaml deployment file to match the new netflix-frontend image
-          yq e '.spec.template.spec.containers[0].image = \"$IMAGE_NAME\"' -i deployment.yaml
+          yq e ".spec.template.spec.containers[0].image = \"$IMAGE_NAME\"" -i deployment.yaml
           cat deployment.yaml
           pwd
           # TODO commit & push changes to infra repo
@@ -49,9 +49,10 @@ jobs:
         run: |
           pwd
           cd ./NetflixInfra
+          cd k8s/NetflixFrontend
           # TODO commit & push changes to infra repo
 #          git config --local user.email "github@actions"
 #          git config --local user.name "github-actions"
-#
+#          deployment.yaml
 #          git add docker-compose.yaml && git commit -m "Update ${{ github.event.inputs.service_name }} image to ${{ github.event.inputs.image }}"
 #          git push origin main --force
