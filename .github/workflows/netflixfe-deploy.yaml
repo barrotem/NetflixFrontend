@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build and push docker images
         run: |
-          # TODO build docker image
+          # Build docker image
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
           IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/netflixfe:github-wf-deploy-${{ github.run_number }}
