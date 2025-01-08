@@ -28,9 +28,9 @@ jobs:
       - name: Checkout infrastructure repo
         uses: actions/checkout@v3
         with:
-          repository: barrotem/${{ vars.INFRA_REPO }} # TODO change me to a dynamic value
+          repository: barrotem/${{ vars.INFRA_REPO }}
           token: ${{ secrets.NETFLIX_INFRA_ACCESS_TOKEN }}  # The GITHUB_TOKEN secret is a GitHub access token.
-          path: ./${{ vars.INFRA_REPO }} # TODO change me to a dynamic value
+          path: ./${{ vars.INFRA_REPO }}
 
       - name: Update YAML manifests
         run: |
@@ -48,9 +48,7 @@ jobs:
         run: |
           pwd
           cd ./${{ vars.INFRA_REPO }}/k8s/NetflixFrontend
-          # TODO commit & push changes to infra repo
-          
-          
+          # Commit & push changes to infra repo
           git config --local user.email "github@actions"
           git config --local user.name "github-actions"
           
