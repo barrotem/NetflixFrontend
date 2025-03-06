@@ -2,7 +2,7 @@
 
 pipeline {
     agent {
-        label 'general' //dummy commit
+        label 'general' //dummy commit-2
     }
 
     triggers {
