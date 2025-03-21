@@ -12,6 +12,8 @@ pipeline {
              stage('Lint') {
                  steps {
                      sh 'echo linting...'
+                     sh 'MAKE LINTING FAIL'
+                     sh 'exit 1'
                  }
              }
             }
