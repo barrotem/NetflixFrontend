@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'general' //dummy commit-4
+    }
 
     stages {
         stage('Tests before build') {
